@@ -37,6 +37,7 @@ static const Rule rules[] = {
 	{ "Gimp",            NULL,                 NULL,            0,            1,           -1 },
 	{ "st-256color",     "st-256color" ,       "pulsemixer",    0,            1,           -1 },
 	{ "st-256color",     "st-256color" ,       "peaclock",      0,            1,           -1 },
+	{ NULL,              NULL,                 "Picture in picture",      0,            1,           -1 },
 	{ "Firefox",         NULL,                 NULL,            1 << 8,       0,           -1 },
 };
 
@@ -53,7 +54,7 @@ static const Layout layouts[] = {
 	{ "[M]",      monocle },
 };
 
-/* Teminal Application */
+/* TUI Application */
 static const char *nvim[] = { "st",  "-e", "nvim", NULL };
 static const char *fb[] = { "st",  "-e", "lfub", NULL };
 static const char *mixer[] = { "st",  "-e", "pulsemixer", NULL };
@@ -62,19 +63,25 @@ static const char *music[] = { "st",  "-e", "ncmpcpp", NULL };
 static const char *netman[] = { "st",  "-e", "nmtui", NULL };
 static const char *chkdsk[] = { "st",  "-e", "ncdu", NULL };
 static const char *esession[] = { "sysact", NULL };
+
+/* Music */
 static const char *mpctoggle[] = { "mpc", "toggle", NULL };
-static const char *mpcnegseek[] = { "mpc", "seek", "-10", NULL };
-static const char *mpcposseek[] = { "mpc", "seek", "+10", NULL };
-static const char *mpcnext[] = { "mpc", "next", NULL };
+static const char *mpcshuffle[] = { "mpc", "shuffle", NULL };
+static const char *mpcnegvol[] = { "mpc", "volume", "-2", NULL };
+static const char *mpcposvol[] = { "mpc", "volume", "+2", NULL };
 static const char *mpcprev[] = { "mpc", "prev", NULL };
+static const char *mpcnext[] = { "mpc", "next", NULL };
+
+/* Display Brightness*/
+static const char *brightup[] = { "xbacklight", "+2", NULL };
+static const char *brightdn[] = { "xbacklight", "-2", NULL };
+static const char *brightupsomemore[] = { "xbacklight", "+10", NULL };
+static const char *brightdnsomemore[] = { "xbacklight", "-10", NULL };
 
 /* GUI Application */
 static const char *web[] = { "chromium", NULL };
-/* static const char *ide[] = { "mousepad", NULL }; */
-static const char *signaldesk[] = { "signal-desktop", NULL };
 static const char *pass[] = { "keepassxc", NULL };
 static const char *pdf[] = { "zathura", NULL };
-static const char *sshot[] = { "flameshot", "gui", NULL };
 
 /* key definitions */
 #define MODKEY Mod4Mask
@@ -93,6 +100,7 @@ static const char *termcmd[]  = { "st", NULL };
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
+
 	/*                       TERMINAL APPLICATIONS                      */
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd   } },
   { MODKEY|ShiftMask,             XK_n,      spawn,          {.v = music     } },
@@ -102,20 +110,28 @@ static const Key keys[] = {
   { MODKEY|ShiftMask,             XK_F4,     spawn,          {.v = mixer     } },
   { MODKEY|ShiftMask,             XK_F8,     spawn,          {.v = netman    } },
   { MODKEY|ShiftMask,             XK_F7,     spawn,          {.v = chkdsk    } },
+
 	/*                       NCMPCPP   CONTROLS                         */
-  { MODKEY,                       XK_F2,     spawn,          {.v = mpctoggle } },
-	{ MODKEY,                       XK_F1,     spawn,          {.v = mpcnegseek } },
-  { MODKEY|ShiftMask,             XK_F1,     spawn,          {.v = mpcprev } },
-	{ MODKEY,                       XK_F3,     spawn,          {.v = mpcposseek } },
+	{ MODKEY,                       XK_F2,     spawn,          {.v = mpcnegvol } },
+  { MODKEY|ShiftMask,             XK_F2,     spawn,          {.v = mpcprev } },
+  { MODKEY,                       XK_F1,     spawn,          {.v = mpctoggle } },
+  { MODKEY|ShiftMask,             XK_F1,     spawn,          {.v = mpcshuffle } },
+	{ MODKEY,                       XK_F3,     spawn,          {.v = mpcposvol } },
   { MODKEY|ShiftMask,             XK_F3,     spawn,          {.v = mpcnext } },
+
+	/*                       BIGHTNESS CONTROLS                         */
+  { MODKEY,                       XK_F5,    spawn,           {.v = brightdn } },
+  { MODKEY,                       XK_F6,    spawn,           {.v = brightup } },
+  { MODKEY|ShiftMask,             XK_F5,    spawn,           {.v = brightdnsomemore } },
+  { MODKEY|ShiftMask,             XK_F6,    spawn,           {.v = brightupsomemore } },
+
 	/*                       GUI      APPLICATIONS                      */
   { MODKEY|ShiftMask,             XK_w,      spawn,          {.v = web       } },
   { MODKEY|ShiftMask,             XK_r,      spawn,          {.v = pdf       } },
-  { MODKEY|ShiftMask,             XK_F9,     spawn,          {.v = signaldesk} },
-  { MODKEY|ShiftMask,             XK_F12,    spawn,          {.v = pass      } },
+  { MODKEY|ShiftMask,             XK_k,      spawn,          {.v = pass      } },
+
 	/*                       dmenu    APPLICATIONS                      */
 	{ MODKEY,                       XK_d,      spawn,          {.v = dmenucmd  } },
-	{ MODKEY|ShiftMask,             XK_s,      spawn,          {.v = sshot     } },
 	{ MODKEY|ShiftMask,             XK_q,      spawn,          {.v = esession  } },
 
 	/*                              DWM SETTINGS                        */
