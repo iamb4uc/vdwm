@@ -10,7 +10,7 @@ static const int user_bh            = 20;        /* 0 means that dwm will calcul
 static const char *fonts[]          = { "monospace:size=9:antialias=true" };
 static const char dmenufont[]       = { "monospace:size=9:antialias=true" };
 static const char scratchpadname[] = "scratchpad";
-static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "120x34", NULL };
+static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "120x34", "-e", "nvim", NULL };
 static const int swallowfloating    = 1;        /* 1 means swallow floating windows by default */
 static const char col_gray1[]       = "#282828";
 static const char col_gray2[]       = "#282828";
@@ -72,6 +72,8 @@ static const char *mixer[] = { "st",  "-e", "pulsemixer", NULL };
 static const char *htop[] = { "st",  "-e", "htop", NULL };
 static const char *music[] = { "st",  "-e", "ncmpcpp", NULL };
 static const char *netman[] = { "st",  "-e", "nmtui", NULL };
+static const char *netkill[] = { "nmcli", "r", "wifi", "off", NULL };
+static const char *netrecover[] = { "nmcli", "r", "wifi", "on", NULL };
 static const char *chkdsk[] = { "st",  "-e", "ncdu", NULL };
 static const char *esession[] = { "sysact", NULL };
 
@@ -89,7 +91,7 @@ static const char *brightdn[] = { "xbacklight", "-2", NULL };
 static const char *brightupsomemore[] = { "xbacklight", "+10", NULL };
 static const char *brightdnsomemore[] = { "xbacklight", "-10", NULL };
 
-/* GUI Application */
+/* Other Application */
 static const char *web[] = { "chromium", NULL };
 static const char *pass[] = { "keepassxc", NULL };
 static const char *pdf[] = { "zathura", NULL };
@@ -119,7 +121,9 @@ static const Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_v,      spawn,          {.v = nvim      } },
 	{ MODKEY|ShiftMask,             XK_f,      spawn,          {.v = fb        } },
   { MODKEY|ShiftMask,             XK_F4,     spawn,          {.v = mixer     } },
-  { MODKEY|ShiftMask,             XK_F8,     spawn,          {.v = netman    } },
+  { MODKEY,                       XK_w,      spawn,          {.v = netman    } },
+  { MODKEY,                       XK_F8,     spawn,          {.v = netkill   } },
+  { MODKEY|ShiftMask,             XK_F8,     spawn,          {.v = netrecover} },
   { MODKEY|ShiftMask,             XK_F7,     spawn,          {.v = chkdsk    } },
 
 	/*                       NCMPCPP   CONTROLS                         */
@@ -154,7 +158,7 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
 	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
 	{ MODKEY,                       XK_Return, zoom,           {0} },
-	{ MODKEY|ShiftMask,             XK_s,  togglescratch,  {.v = scratchpadcmd } },
+	{ MODKEY|ShiftMask,             XK_s,      togglescratch,  {.v = scratchpadcmd } },
 	{ MODKEY,                       XK_Tab,    view,           {0} },
 	{ MODKEY|ShiftMask,             XK_c,      killclient,     {0} },
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
