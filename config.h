@@ -29,7 +29,7 @@ static const char *colors[][3]      = {
 };
 
 /* tagging */
-static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+static const char *tags[] = { "ONE", "TWO", "THREE", "FOUR", "FIVE", "SIX", "SEVEN", "EIGHT", "NINE" };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -39,7 +39,7 @@ static const Rule rules[] = {
   /* class             instance              title                      tags mask     isfloating   monitor */
 	/* class             instance              title                      tags mask     isfloating   isterminal  noswallow  monitor */
 	{ "Gimp",            NULL,                 NULL,                      0,            1,           0,           0,        -1 },
-	{ "Firefox",         NULL,                 NULL,                      1 << 8,       0,           0,          -1,        -1 },
+	{ "Firefox",         NULL,                 NULL,                      0,            0,           0,          -1,        -1 },
 	{ "St",              NULL,                 NULL,                      0,            0,           1,           0,        -1 },
 	{ NULL,              NULL,                 "Event Tester",            0,            0,           0,           1,        -1 }, /* xev */
 	{ "st-256color",     "st-256color" ,       "pulsemixer",              0,            1,           0,           0,        -1 },
@@ -48,7 +48,7 @@ static const Rule rules[] = {
 };
 
 /* layout(s) */
-static const float mfact        = 0.55; /* factor of master area size [0.05..0.95] */
+static const float mfact        = 0.6; /* factor of master area size [0.05..0.95] */
 static const int nmaster        = 1;    /* number of clients in master area */
 static const int resizehints    = 1;    /* 1 means respect size hints in tiled resizals */
 static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen window */
@@ -95,9 +95,10 @@ static const char *brightdnsomemore[] = { "xbacklight", "-10", NULL };
 static const char *web[] = { "chromium", NULL };
 static const char *pass[] = { "keepassxc", NULL };
 static const char *pdf[] = { "zathura", NULL };
+static const char *lock[] = { "slock", NULL };
 
 /* key definitions */
-#define MODKEY Mod4Mask
+#define MODKEY Mod1Mask
 #define TAGKEYS(KEY,TAG) \
 	{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
 	{ MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
@@ -116,12 +117,12 @@ static const Key keys[] = {
 
 	/*                       TERMINAL APPLICATIONS                      */
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd   } },
-  { MODKEY|ShiftMask,             XK_n,      spawn,          {.v = music     } },
+  { MODKEY|ShiftMask,             XK_m,      spawn,          {.v = music     } },
 	{ MODKEY|ShiftMask,             XK_h,      spawn,          {.v = htop      } },
 	{ MODKEY|ShiftMask,             XK_v,      spawn,          {.v = nvim      } },
 	{ MODKEY|ShiftMask,             XK_f,      spawn,          {.v = fb        } },
   { MODKEY|ShiftMask,             XK_F4,     spawn,          {.v = mixer     } },
-  { MODKEY,                       XK_w,      spawn,          {.v = netman    } },
+  { MODKEY,                       XK_n,      spawn,          {.v = netman    } },
   { MODKEY,                       XK_F8,     spawn,          {.v = netkill   } },
   { MODKEY|ShiftMask,             XK_F8,     spawn,          {.v = netrecover} },
   { MODKEY|ShiftMask,             XK_F7,     spawn,          {.v = chkdsk    } },
@@ -144,6 +145,7 @@ static const Key keys[] = {
   { MODKEY|ShiftMask,             XK_w,      spawn,          {.v = web       } },
   { MODKEY|ShiftMask,             XK_r,      spawn,          {.v = pdf       } },
   { MODKEY|ShiftMask,             XK_k,      spawn,          {.v = pass      } },
+  { MODKEY,                       XK_F11,    spawn,          {.v = lock      } },
 
 	/*                       dmenu    APPLICATIONS                      */
 	{ MODKEY,                       XK_d,      spawn,          {.v = dmenucmd  } },
