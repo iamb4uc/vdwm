@@ -115,6 +115,7 @@ static const char *brightdnsomemore[] = {"xbacklight", "-10", NULL};
 
 /* Other Application */
 static const char *web[] = {"chromium", NULL};
+static const char *web2[] = {"firefox", NULL};
 static const char *pass[] = {"keepassxc", NULL};
 static const char *pdf[] = {"zathura", NULL};
 static const char *lock[] = {"slock", NULL};
@@ -169,6 +170,7 @@ static const Key keys[] = {
 
     /*                       GUI      APPLICATIONS                      */
     {MODKEY | ShiftMask, XK_w, spawn, {.v = web}},
+    {MODKEY, XK_w, spawn, {.v = web2}},
     {MODKEY | ShiftMask, XK_r, spawn, {.v = pdf}},
     {MODKEY | ShiftMask, XK_k, spawn, {.v = pass}},
     {MODKEY | ShiftMask, XK_F12, spawn, {.v = mail}},
