@@ -1,21 +1,21 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static const unsigned int borderpx = 2; /* border pixel of windows */
+static const unsigned int borderpx = 1; /* border pixel of windows */
 static const unsigned int gappx = 8;    /* gaps between windows */
 static const unsigned int snap = 0;     /* snap pixel */
 static const int showbar = 1;           /* 0 means no bar */
 static const int topbar = 0;            /* 0 means bottom bar */
-static const int user_bh = 20; /* 0 means that dwm will calculate bar height, >=
-                                  1 means dwm will user_bh as bar height */
+/* 0 means that dwm will calculate bar height, >= 1 means dwm will user_bh as
+ * bar height */
+static const int user_bh = 0;
 static const char *fonts[] = {"JetBrainsMono Nerd Font:size=9:antialias=true"};
-static const char dmenufont[] = {
-    "JetBrainsMono Nerd Font:size=9:antialias=true"};
+static const char dmenufont[] = "JetBrainsMono Nerd Font:size=9:antialias=true";
 static const char scratchpadname[] = "scratchpad";
-static const char *scratchpadcmd[] = {"st",     "-t", scratchpadname, "-g",
-                                      "120x34", "-e", "nvim",         NULL};
-static const int swallowfloating =
-    1; /* 1 means swallow floating windows by default */
+static const char *scratchpadcmd[] = {"st", "-t",     scratchpadname,
+                                      "-g", "120x34", NULL};
+/* 1 means swallow floating windows by default */
+static const int swallowfloating = 1;
 static const char col_gray1[] = "#282828";
 static const char col_gray2[] = "#282828";
 static const char col_gray3[] = "#ebdbb2";
@@ -25,24 +25,11 @@ static const char *colors[][3] = {
     /*               fg         bg         border   */
     [SchemeNorm] = {col_gray3, col_gray1, col_gray2},
     [SchemeSel] = {col_gray4, col_cyan, col_cyan},
-    [SchemeStatus] = {col_gray3, col_gray1,
-                      "#282828"}, // Statusbar right {text,background,not used
-                                  // but cannot be empty}
-    [SchemeTagsSel] = {col_gray4, col_cyan,
-                       "#282828"}, // Tagbar left selected {text,background,not
-                                   // used but cannot be empty}
-    [SchemeTagsNorm] =
-        {col_gray3, col_gray1,
-         "#282828"}, // Tagbar left unselected {text,background,not used but
-                     // cannot be empty}
-    [SchemeInfoSel] =
-        {col_gray4, col_cyan,
-         "#282828"}, // infobar middle  selected {text,background,not used but
-                     // cannot be empty}
-    [SchemeInfoNorm] =
-        {col_gray3, col_gray1,
-         "#282828"}, // infobar middle  unselected {text,background,not used but
-                     // cannot be empty}
+    [SchemeStatus] = {col_gray3, col_gray1, "#282828"},
+    [SchemeTagsSel] = {col_gray4, col_cyan, "#282828"},
+    [SchemeTagsNorm] = {col_gray3, col_gray1, "#282828"},
+    [SchemeInfoSel] = {col_gray4, col_cyan, "#282828"},
+    [SchemeInfoNorm] = {col_gray3, col_gray1, "#282828"},
 };
 
 /* tagging */
