@@ -1,13 +1,14 @@
-.TH DWM 1 dwm\-VERSION
+.TH VDWM 1 dwm\-VERSION
 .SH NAME
-dwm \- dynamic window manager
+vdwm \- a very dynamic window manager
 .SH SYNOPSIS
-.B dwm
+.B vdwm
 .RB [ \-v ]
 .SH DESCRIPTION
-dwm is a dynamic window manager for X. It manages windows in tiled, monocle
-and floating layouts. Either layout can be applied dynamically, optimising the
-environment for the application in use and the task performed.
+vdwm is a very dynamic window manager based on dynamic window manager by suckless.org
+for X. It manages windows in tiled, monocle, floating, and various other layouts.
+Each layout can be applied dynamically, optimising the environment for the application
+in use and the task performed.
 .P
 In tiled layouts windows are managed in a master and stacking area. The master
 area on the left contains one window by default, and the stacking area on the
@@ -29,13 +30,13 @@ color. The tags of the focused window are indicated with a filled square in the
 top left corner.  The tags which are applied to one or more windows are
 indicated with an empty square in the top left corner.
 .P
-dwm draws a small border around windows to indicate the focus state.
+vdwm draws a small border around windows to indicate the focus state.
 .P
-On start, dwm can start additional programs that may be specified in two special
+On start, vdwm can start additional programs that may be specified in two special
 shell scripts (see the FILES section below), autostart_blocking.sh and
-autostart.sh.  The former is executed first and dwm will wait for its
+autostart.sh.  The former is executed first and vdwm will wait for its
 termination before starting.  The latter is executed in the background before
-dwm enters its handler loop.
+vdwm enters its handler loop.
 .P
 Either of these files may be omitted.
 .SH OPTIONS
@@ -158,11 +159,11 @@ Increase the gaps around windows.
 Reset the gaps around windows to
 .BR 0 .
 .TP
-.B Mod1\-Shift\-q
-Quit dwm.
+.B Mod1\-Shift\-x
+Quit vdwm.
 .TP
 .B Mod1\-Control\-Shift\-q
-Restart dwm.
+Restart vdwm.
 .SS Mouse commands
 .TP
 .B Mod1\-Button1
@@ -174,11 +175,11 @@ Toggles focused window between floating and tiled state.
 .B Mod1\-Button3
 Resize focused window while dragging. Tiled windows will be toggled to the floating state.
 .SH FILES
-The files containing programs to be started along with dwm are searched for in
+The files containing programs to be started along with vdwm are searched for in
 the following directories:
-.IP "1. $XDG_DATA_HOME/dwm"
+.\" .IP "1. $XDG_DATA_HOME/dwm"
 .IP "2. $HOME/.local/share/dwm"
-.IP "3. $HOME/.dwm"
+.\" .IP "3. $HOME/.dwm"
 .P
 The first existing directory is scanned for any of the autostart files below.
 .TP 15
