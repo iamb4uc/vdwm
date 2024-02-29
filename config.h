@@ -2,7 +2,7 @@
 
 /* appearance */
 static const unsigned int borderpx = 1; /* border pixel of windows */
-static const unsigned int gappx = 32;   /* gaps between windows */
+static const unsigned int gappx = 20;   /* gaps between windows */
 static const unsigned int snap = 20;    /* snap pixel */
 static const int showbar = 1;           /* 0 means no bar */
 static const int topbar = 0;            /* 0 means bottom bar */
@@ -47,8 +47,8 @@ static const Rule rules[] = {
     {"Firefox", NULL, NULL, 0, 0, 0, -1, -1},
     {"St", NULL, NULL, 0, 0, 1, 0, -1},
     {NULL, NULL, "Event Tester", 0, 0, 0, 1, -1}, /* xev */
-    /* {"st-256color", "st-256color", "pulsemixer", 0, 1, 0, 0, -1}, */
-    /* {"st-256color", "st-256color", "ncmpcpp", 0, 1, 0, 0, -1}, */
+    {"st-256color", "st-256color", "pulsemixer", 0, 1, 0, 0, -1},
+    {"st-256color", "st-256color", "ncmpcpp", 0, 1, 0, 0, -1},
     {"st-256color", "st-256color", "peaclock", 0, 1, 0, 0, -1},
     {NULL, NULL, "Picture in picture", 0, 1, 0, 0, -1},
 };
@@ -104,8 +104,8 @@ static const char *exitses[] = {"sysact", NULL};
 /* Music */
 static const char *mpctoggle[] = {"mpc", "toggle", NULL};
 static const char *mpcshuffle[] = {"mpc", "shuffle", NULL};
-static const char *mpcnegvol[] = {"mpc", "volume", "-2", NULL};
-static const char *mpcposvol[] = {"mpc", "volume", "+2", NULL};
+static const char *mpcnegvol[] = {"pamixer", "-d", "2", NULL};
+static const char *mpcposvol[] = {"pamixer", "-i", "2", NULL};
 static const char *mpcprev[] = {"mpc", "prev", NULL};
 static const char *mpcnext[] = {"mpc", "next", NULL};
 
@@ -119,9 +119,10 @@ static const char *brightdnsomemore[] = {"xbacklight", "-10", NULL};
 static const char *web[] = {"firefox", NULL};
 static const char *pass[] = {"keepassxc", NULL};
 static const char *pdf[] = {"zathura", NULL};
-static const char *lock[] = {"slock", NULL};
+static const char *ss[] = {"flameshot", "gui", NULL};
 static const char *mail[] = {"thunderbird", NULL};
 static const char *notes[] = {"obsidian", NULL};
+static const char *slp[] = {"slock", "loginctl", "suspend", "-i", NULL};
 
 /* key definitions */
 #define MODKEY Mod1Mask
@@ -153,9 +154,10 @@ static const Key keys[] = {
     {MODKEY | ShiftMask, XK_F4, spawn, {.v = mixer}},
     {MODKEY, XK_n, spawn, {.v = netman}},
     {MODKEY, XK_F8, spawn, {.v = netkill}},
-    {MODKEY, XK_F11, spawn, {.v = lock}},
     {MODKEY | ShiftMask, XK_F8, spawn, {.v = netrecover}},
     {MODKEY | ShiftMask, XK_F7, spawn, {.v = chkdsk}},
+    {MODKEY | ShiftMask, XK_s, spawn, {.v = ss}},
+    {MODKEY | ShiftMask, XK_p, togglescratch, {.v = scratchpadcmd}},
 
     /*                       NCMPCPP   CONTROLS                         */
     {MODKEY, XK_F2, spawn, {.v = mpcnegvol}},
@@ -181,6 +183,7 @@ static const Key keys[] = {
     /*                       dmenu    APPLICATIONS                      */
     {MODKEY, XK_d, spawn, {.v = dmenucmd}},
     {MODKEY | ShiftMask, XK_q, spawn, {.v = exitses}},
+    {MODKEY, XK_F11, spawn, {.v = slp}},
 
     /*                              DWM SETTINGS                        */
     {MODKEY, XK_b, togglebar, {0}},
@@ -191,7 +194,6 @@ static const Key keys[] = {
     {MODKEY, XK_h, setmfact, {.f = -0.05}},
     {MODKEY, XK_l, setmfact, {.f = +0.05}},
     {MODKEY, XK_Return, zoom, {0}},
-    {MODKEY | ShiftMask, XK_s, togglescratch, {.v = scratchpadcmd}},
     {MODKEY, XK_Tab, view, {0}},
     {MODKEY | ShiftMask, XK_c, killclient, {0}},
     {MODKEY, XK_t, setlayout, {.v = &layouts[0]}},
