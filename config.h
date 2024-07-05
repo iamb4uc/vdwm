@@ -9,8 +9,9 @@ static const int topbar = 0;            /* 0 means bottom bar */
 /* 0 means that dwm will calculate bar height, >= 1 means dwm will user_bh as
  * bar height */
 static const int user_bh = 0;
-static const char *fonts[] = {"monospace:size=9:antialias=true"};
-static const char dmenufont[] = "monospace:size=9:antialias=true";
+static const char *fonts[] = {"JetBrainsMono Nerd Font:size=11:antialias=true"};
+static const char dmenufont[] =
+    "JetBrainsMono Nerd Font:size=15:antialias=true";
 static const char scratchpadname[] = "scratchpad";
 static const char *scratchpadcmd[] = {"st", "-t",     scratchpadname,
                                       "-g", "120x34", NULL};
@@ -91,6 +92,8 @@ static const Layout layouts[] = {
 
 /* TUI Application */
 static const char *nvim[] = {"st", "-e", "nvim", NULL};
+static const char *tmuxnew[] = {"st", "-e", "tmux", NULL};
+static const char *tmuxattach[] = {"st", "-e", "tmux", "a", NULL};
 static const char *fb[] = {"st", "-e", "lfub", NULL};
 static const char *mixer[] = {"st", "-e", "pulsemixer", NULL};
 static const char *htop[] = {"st", "-e", "htop", NULL};
@@ -150,6 +153,8 @@ static const Key keys[] = {
     {MODKEY | ShiftMask, XK_m, spawn, {.v = music}},
     {MODKEY | ShiftMask, XK_h, spawn, {.v = htop}},
     {MODKEY | ShiftMask, XK_v, spawn, {.v = nvim}},
+    {MODKEY | ShiftMask, XK_t, spawn, {.v = tmuxnew}},
+    {MODKEY | ShiftMask, XK_a, spawn, {.v = tmuxattach}},
     {MODKEY | ShiftMask, XK_f, spawn, {.v = fb}},
     {MODKEY | ShiftMask, XK_F4, spawn, {.v = mixer}},
     {MODKEY, XK_n, spawn, {.v = netman}},
