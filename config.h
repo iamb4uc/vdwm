@@ -49,7 +49,7 @@ static const Rule rules[] = {
     {"St", NULL, NULL, 0, 0, 1, 0, -1},
     {NULL, NULL, "Event Tester", 0, 0, 0, 1, -1}, /* xev */
     {"st-256color", "st-256color", "pulsemixer", 0, 1, 0, 0, -1},
-    {"st-256color", "st-256color", "ncmpcpp", 0, 1, 0, 0, -1},
+    /*{"st-256color", "st-256color", "ncmpcpp", 0, 1, 0, 0, -1},*/
     {"st-256color", "st-256color", "peaclock", 0, 1, 0, 0, -1},
     {NULL, NULL, "Picture in picture", 0, 1, 0, 0, -1},
 };
