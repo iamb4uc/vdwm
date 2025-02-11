@@ -1,7 +1,7 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static const unsigned int borderpx = 1; /* border pixel of windows */
+static const unsigned int borderpx = 0; /* border pixel of windows */
 static const unsigned int gappx = 20;   /* gaps between windows */
 static const unsigned int snap = 20;    /* snap pixel */
 static const int showbar = 1;           /* 0 means no bar */
@@ -46,6 +46,7 @@ static const Rule rules[] = {
        mask     isfloating   isterminal  noswallow  monitor */
     {"Gimp", NULL, NULL, 0, 0, 0, 0, -1},
     {"Firefox", NULL, NULL, 0, 0, 0, -1, -1},
+    {"qutebrowser", NULL, NULL, 0, 0, 0, -1, -1},
     {"St", NULL, NULL, 0, 0, 1, 0, -1},
     {NULL, NULL, "Event Tester", 0, 0, 0, 1, -1}, /* xev */
     {"st-256color", "st-256color", "pulsemixer", 0, 1, 0, 0, -1},
@@ -75,7 +76,7 @@ static const Layout layouts[] = {
 };
 
 /*======= APPLICATIONS USED =======
- * Browser:              firefox
+ * Browser:              firefox, qutebrowser
  * Notes:                obsidian
  * Ide:                  neovim
  * Music:                ncmpcpp + mpd
@@ -119,7 +120,7 @@ static const char *brightupsomemore[] = {"xbacklight", "+10", NULL};
 static const char *brightdnsomemore[] = {"xbacklight", "-10", NULL};
 
 /* Other Application */
-static const char *web[] = {"firefox", NULL};
+static const char *web[] = {"qutebrowser", NULL};
 static const char *pass[] = {"keepassxc", NULL};
 static const char *pdf[] = {"zathura", NULL};
 static const char *ss[] = {"flameshot", "gui", NULL};
